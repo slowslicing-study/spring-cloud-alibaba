@@ -2,6 +2,7 @@ package com.lynchj.study.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  *                                        ,s555SB@@&
@@ -39,6 +40,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2022/12/5 12:58
  */
 @SpringBootApplication
+@EnableFeignClients
 public class UserApplication {
 
     public static void main(String[] args) {

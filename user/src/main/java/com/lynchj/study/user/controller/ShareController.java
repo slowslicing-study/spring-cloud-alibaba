@@ -1,5 +1,6 @@
 package com.lynchj.study.user.controller;
 
+import com.lynchj.study.user.feign.ShareFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -61,6 +62,16 @@ public class ShareController {
 
         // 发起访问
         String resp = restTemplate.getForObject(url, String.class, id);
+        return "Share " + resp;
+    }
+
+    @Resource
+    private ShareFeign shareFeign;
+
+    @GetMapping("/feign/getOrder/{id}")
+    public String getOrderByFeign(@PathVariable("id") Long id) {
+        // 发起访问
+        String resp = shareFeign.getOrder(id);
         return "Share " + resp;
     }
 
