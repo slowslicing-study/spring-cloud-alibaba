@@ -1,0 +1,13 @@
+server:
+  # \u9879\u76EE\u7AEF\u53E3\u53F7
+  port: 2020
+
+spring:
+  application:
+    # \u9879\u76EE\u540D\u79F0
+    name: 'order'
+  cloud:
+    nacos:
+      discovery:
+        # Nacos \u670D\u52A1\u5730\u5740
+        server-addr: '127.0.0.1:8848'
