@@ -90,4 +90,12 @@ public class ShareController {
         return queryOrder;
     }
 
+    @PostMapping("/feign/bodyModel")
+    public Order bodyModel(@RequestBody Order order) {
+        // 发起访问
+        Order bodyOrder = shareFeign.bodyModel(order);
+        bodyOrder.setName("Share " + bodyOrder.getName());
+        return bodyOrder;
+    }
+
 }

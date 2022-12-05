@@ -64,4 +64,10 @@ public class OrderController {
         return order;
     }
 
+    @PostMapping("/bodyModel")
+    public Order bodyModel(@RequestBody Order order) {
+        order.setName(String.format("端口: %s, %s", port, order.getName()));
+        return order;
+    }
+
 }

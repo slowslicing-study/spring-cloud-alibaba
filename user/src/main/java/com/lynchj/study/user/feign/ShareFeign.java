@@ -3,9 +3,7 @@ package com.lynchj.study.user.feign;
 import com.lynchj.study.user.model.Order;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "order")
 public interface ShareFeign {
@@ -18,5 +16,8 @@ public interface ShareFeign {
 
     @GetMapping("/order/queryModel")
     Order queryModel(@SpringQueryMap Order order);
+
+    @PostMapping("/order/bodyModel")
+    Order bodyModel(@RequestBody Order order);
 
 }
