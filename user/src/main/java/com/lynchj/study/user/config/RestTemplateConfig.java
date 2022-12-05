@@ -1,5 +1,6 @@
 package com.lynchj.study.user.config;
 
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -46,6 +47,7 @@ public class RestTemplateConfig {
      * 客户端负载均衡器模板类，方便发起 Http 请求
      */
     @Bean
+    @LoadBalanced
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }

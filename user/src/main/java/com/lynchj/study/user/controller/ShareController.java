@@ -52,18 +52,12 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ShareController {
 
     @Resource
-    private RestTemplate    restTemplate;
-    @Resource
-    private DiscoveryClient discoveryClient;
+    private RestTemplate restTemplate;
 
     @GetMapping("/getOrder/{id}")
     public String getOrder(@PathVariable("id") Long id) {
-        // 从服务发现中获取 order 对应的服务实例列表
-        List<ServiceInstance> orders = discoveryClient.getInstances("order");
-        // 随机获取一个
-        ServiceInstance instance = orders.get(ThreadLocalRandom.current().nextInt(orders.size()));
         // 拼上访问地址
-        String url = instance.getUri() + "/order/getOrder/{id}";
+        String url = "http://order/order/getOrder/{id}";
 
         // 发起访问
         String resp = restTemplate.getForObject(url, String.class, id);
