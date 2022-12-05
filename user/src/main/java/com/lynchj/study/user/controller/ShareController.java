@@ -1,6 +1,7 @@
 package com.lynchj.study.user.controller;
 
 import com.lynchj.study.user.feign.ShareFeign;
+import com.lynchj.study.user.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -73,6 +74,20 @@ public class ShareController {
         // 发起访问
         String resp = shareFeign.getOrder(id);
         return "Share " + resp;
+    }
+
+    @GetMapping("/feign/querySingle")
+    public String querySingleByFeign(String id) {
+        // 发起访问
+        return shareFeign.querySingle(id);
+    }
+
+    @GetMapping("/feign/queryModel")
+    public Order queryOrderByFeign(Order order) {
+        // 发起访问
+        Order queryOrder = shareFeign.queryModel(order);
+        queryOrder.setName("Share " + queryOrder.getName());
+        return queryOrder;
     }
 
 }

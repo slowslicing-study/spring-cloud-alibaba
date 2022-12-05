@@ -1,5 +1,7 @@
 package com.lynchj.study.order.controller;
 
+import com.lynchj.study.order.model.Order;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -49,6 +51,17 @@ public class OrderController {
     @GetMapping("/getOrder/{id}")
     public String getOrder(@PathVariable("id") Long id) {
         return String.format("端口: %s, 你的订单是: %d", port, id);
+    }
+
+    @GetMapping("/querySingle")
+    public String querySingle(String id) {
+        return String.format("端口: %s, 你的订单是: %s", port, id);
+    }
+
+    @GetMapping("/queryModel")
+    public Order queryModel(Order order) {
+        order.setName(String.format("端口: %s, %s", port, order.getName()));
+        return order;
     }
 
 }
