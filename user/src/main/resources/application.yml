@@ -11,3 +11,7 @@ spring:
       discovery:
         # Nacos \u670D\u52A1\u5730\u5740
         server-addr: '127.0.0.1:8848'
+
+logging:
+  level:
+    com.lynchj.study.user.feign: debug

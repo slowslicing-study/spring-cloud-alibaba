@@ -1,11 +1,12 @@
 package com.lynchj.study.user.feign;
 
+import com.lynchj.study.user.config.FeignConfig;
 import com.lynchj.study.user.model.Order;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "order")
+@FeignClient(name = "order", configuration = FeignConfig.class)
 public interface ShareFeign {
 
     @GetMapping("/order/getOrder/{id}")
