@@ -1,10 +1,10 @@
 package com.lynchj.study.order.controller;
 
 import com.lynchj.study.order.model.Order;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  *                                        ,s555SB@@&
@@ -68,6 +68,12 @@ public class OrderController {
     public Order bodyModel(@RequestBody Order order) {
         order.setName(String.format("端口: %s, %s", port, order.getName()));
         return order;
+    }
+
+    @GetMapping("/orderOfTimeout/{id}")
+    public String orderOfTimeout(@PathVariable("id") Long id) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(3);
+        return String.format("端口: %s, 你的订单是: %d", port, id);
     }
 
 }

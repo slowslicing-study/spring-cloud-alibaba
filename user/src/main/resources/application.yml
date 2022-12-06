@@ -1,26 +1,30 @@
 server:
-  # \u9879\u76EE\u7AEF\u53E3\u53F7
+  # 项目端口号
   port: 1010
 
 spring:
   application:
-    # \u9879\u76EE\u540D\u79F0
+    # 项目名称
     name: 'user'
   cloud:
     nacos:
       discovery:
-        # Nacos \u670D\u52A1\u5730\u5740
+        # Nacos 服务地址
         server-addr: '127.0.0.1:8848'
 
 feign:
   client:
     config:
-      # \u6307\u5B9A\u5BF9\u5E94\u5FAE\u670D\u52A1\u540D\u79F0
-      # \u8FD9\u91CC\u56E0\u4E3A\u53EA\u770B Feign \u8BBF\u95EE order \u9879\u76EE\u7684\u65E5\u5FD7\uFF0C\u6240\u4EE5\u5C31\u5199 order \u4E86
-      # \u5982\u679C\u628A\u8FD9\u91CC\u7684 order \u6539\u6210 default \u90A3\u5C31\u662F\u6240\u6709\u7684\u5FAE\u670D\u52A1\u8BBF\u95EE\u90FD\u751F\u6548
+      # 指定对应微服务名称
+      # 这里因为只看 Feign 访问 order 项目的日志，所以就写 order 了
+      # 如果把这里的 order 改成 default 那就是所有的微服务访问都生效
       order:
-        # \u914D\u7F6E\u65E5\u5FD7\u8BE6\u60C5\u7EA7\u522B
+        # 配置日志详情级别
         logger-level: full
+        # 连接超时
+        connect-timeout: 2000
+        # 读取超时
+        read-timeout: 2000
 
 logging:
   level:

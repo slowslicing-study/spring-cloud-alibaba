@@ -2,17 +2,10 @@ package com.lynchj.study.user.controller;
 
 import com.lynchj.study.user.feign.ShareFeign;
 import com.lynchj.study.user.model.Order;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *                                        ,s555SB@@&
@@ -96,6 +89,13 @@ public class ShareController {
         Order bodyOrder = shareFeign.bodyModel(order);
         bodyOrder.setName("Share " + bodyOrder.getName());
         return bodyOrder;
+    }
+
+    @GetMapping("/feign/orderOfTimeout/{id}")
+    public String orderOfTimeout(@PathVariable("id") Long id) {
+        // 发起访问
+        String resp = shareFeign.orderOfTimeout(id);
+        return "Share " + resp;
     }
 
 }
