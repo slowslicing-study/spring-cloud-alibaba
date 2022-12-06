@@ -12,4 +12,9 @@ public class FeignConfig {
         return Logger.Level.FULL;
     }
 
+//    @Bean
+    public Request.Options options() {
+        return new Request.Options(2000, 2000);
+    }
+
 }
