@@ -25,6 +25,16 @@ feign:
         connect-timeout: 2000
         # 读取超时
         read-timeout: 2000
+  httpclient:
+#    enabled: true
+    # 针对连接池中的连接，连接超时时间
+    connection-timeout: 2000
+    # 连接池最大连接数
+    max-connections: 200
+    # 针对单个服务的最大连接数
+    max-connections-per-route: 50
+  okhttp:
+    enabled: true
 
 logging:
   level:
