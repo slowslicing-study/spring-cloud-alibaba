@@ -25,6 +25,9 @@ feign:
         connect-timeout: 2000
         # 读取超时
         read-timeout: 2000
+        # 拦截器，可以配置多个
+        request-interceptors:
+          - com.lynchj.study.user.config.FeignInterceptor
   httpclient:
 #    enabled: true
     # 针对连接池中的连接，连接超时时间
