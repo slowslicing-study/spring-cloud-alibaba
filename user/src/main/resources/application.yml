@@ -6,8 +6,25 @@ spring:
   application:
     # 项目名称
     name: 'user'
+  profiles:
+    # 不同环境配置
+    active: 'dev'
+  config:
+    import:
+      # 自 Spring Boot 2.4 以来，导入配置是通过此种方式完成
+      - 'optional:nacos:user.yaml'
+      # 根据不同 profile 来选择不同的配置
+      - 'optional:nacos:user-${spring.profiles.active}.yaml'
+#      - 'optional:nacos:user.yaml?group=SPRING_CLOUD_ALIBABA&refreshEnabled=false'
   cloud:
     nacos:
+      config:
+        # 配置中心服务地址
+        server-addr: '127.0.0.1:8848'
+        # 配置指定组，默认为：DEFAULT_GROUP
+#        group: 'SPRING_CLOUD_ALIBABA'
+        # 命名空间 ID 配置
+#        namespace: 'spring_cloud_alibaba'
       discovery:
         # Nacos 服务地址
         server-addr: '127.0.0.1:8848'

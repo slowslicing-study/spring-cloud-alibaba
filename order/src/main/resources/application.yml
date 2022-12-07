@@ -1,13 +1,21 @@
 server:
-  # \u9879\u76EE\u7AEF\u53E3\u53F7
+  # 项目端口号
   port: 2020
 
 spring:
   application:
-    # \u9879\u76EE\u540D\u79F0
+    # 项目名称
     name: 'order'
+  config:
+    # 自 Spring Boot 2.4 以来，导入配置是通过此种方式完成
+    import: 'optional:nacos:order.yaml'
   cloud:
     nacos:
+      config:
+        # 配置中心服务地址
+        server-addr: '127.0.0.1:8848'
+        # 配置中心配置扩展名
+        file-extension: 'yaml'
       discovery:
-        # Nacos \u670D\u52A1\u5730\u5740
+        # nacos 服务地址
         server-addr: '127.0.0.1:8848'
