@@ -2,6 +2,10 @@ server:
   # 项目端口号
   port: 1010
 
+my:
+  name: 'application.yml'
+  hei: 111
+
 spring:
   application:
     # 项目名称
@@ -14,7 +18,7 @@ spring:
       # 自 Spring Boot 2.4 以来，导入配置是通过此种方式完成
       - 'optional:nacos:user.yaml'
       # 根据不同 profile 来选择不同的配置
-      - 'optional:nacos:user-${spring.profiles.active}.yaml'
+#      - 'optional:nacos:user-${spring.profiles.active}.yaml'
 #      - 'optional:nacos:user.yaml?group=SPRING_CLOUD_ALIBABA&refreshEnabled=false'
   cloud:
     nacos:
