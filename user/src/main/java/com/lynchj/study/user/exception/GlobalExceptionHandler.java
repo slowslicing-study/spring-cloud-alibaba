@@ -16,13 +16,13 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(RuntimeException.class)
     public String handleRuntimeException(HttpServletRequest request, RuntimeException ex) {
-        log.error("RuntimeException: ", ExceptionUtils.getStackTrace(ex));
-        log.error("请求地址：" + request.getRequestURL());
+        log.error("RuntimeException: {}", ExceptionUtils.getStackTrace(ex));
+        log.error("请求地址: {}", request.getRequestURL());
         return "全局错误处理器：RuntimeException";
     }
 
     /**
-     * 用来捕获404，400这种无法到达controller的错误
+     * 用来捕获未知的错误
      *
      * @param ex
      * @return
@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     public String defaultErrorHandler(Exception ex) {
-        log.error("Exception: ", ExceptionUtils.getStackTrace(ex));
+        log.error("Exception: {}", ExceptionUtils.getStackTrace(ex));
         return "全局错误处理器：Exception";
     }
 
