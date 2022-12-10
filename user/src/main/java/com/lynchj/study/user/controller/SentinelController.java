@@ -1,11 +1,16 @@
 package com.lynchj.study.user.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
+
 @RestController
 @RequestMapping("/sentinel")
+@Slf4j
 public class SentinelController {
 
     /**
@@ -26,9 +31,21 @@ public class SentinelController {
 
     @GetMapping("/helloWorld")
 //    @SentinelResource("HelloWorld")
-    public String helloWorld() {
-        // 被保护的逻辑
+    public String helloWorld() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
         return  "Sentinel hello world";
+    }
+
+    @GetMapping("/downgrade/slowCall")
+    public String slowCall() throws InterruptedException {
+        int random = ThreadLocalRandom.current().nextInt(10) + 1;
+        if (random > 3) {
+            TimeUnit.MILLISECONDS.sleep(101);
+            log.warn("【slowCall】- 超过 100ms");
+        } else {
+            log.info("【slowCall】- 正常返回");
+        }
+        return  "Sentinel downgrade slowCall";
     }
 
 }

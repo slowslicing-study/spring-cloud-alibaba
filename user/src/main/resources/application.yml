@@ -40,7 +40,7 @@ spring:
         # Nacos 服务地址
         server-addr: '127.0.0.1:8848'
     sentinel:
-      filter:
+#      filter:
         # 是否对 SpringMVC 端点进行支持
 #        enabled: false
       transport:
