@@ -6,6 +6,13 @@ my:
   name: 'application.yml'
   hei: 111
 
+management:
+  endpoints:
+    web:
+      exposure:
+        # 暴露 Actuator 的所有端点
+        include: '*'
+
 spring:
   application:
     # 项目名称
@@ -32,6 +39,17 @@ spring:
       discovery:
         # Nacos 服务地址
         server-addr: '127.0.0.1:8848'
+    sentinel:
+      filter:
+        # 是否对 SpringMVC 端点进行支持
+#        enabled: false
+      transport:
+        # 会在应用对应的机器上启动一个 Http Server，该 Server 会与 Sentinel 控制台做交互。
+        # 比如 Sentinel 控制台添加了一个限流规则，会把规则数据 push 给这个 Http Server 接收，
+        # Http Server 再将规则注册到 Sentinel 中。
+        port: 8179
+        # Sentinel 控制台地址
+        dashboard: '127.0.0.1:8080'
 
 feign:
   client:
