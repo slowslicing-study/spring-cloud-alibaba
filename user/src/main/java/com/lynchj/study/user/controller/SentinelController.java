@@ -48,4 +48,16 @@ public class SentinelController {
         return  "Sentinel downgrade slowCall";
     }
 
+    @GetMapping("/downgrade/errorRatio")
+    public String errorRatio() {
+        int random = ThreadLocalRandom.current().nextInt(10) + 1;
+        if (random > 5) {
+            log.warn("【errorRatio】- 触发异常");
+            int i = 1 / 0;
+        } else {
+            log.info("【errorRatio】- 正常返回");
+        }
+        return  "Sentinel downgrade errorRatio";
+    }
+
 }

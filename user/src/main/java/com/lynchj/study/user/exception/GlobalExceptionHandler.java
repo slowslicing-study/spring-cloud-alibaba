@@ -1,13 +1,11 @@
 package com.lynchj.study.user.exception;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 
-@RestControllerAdvice
+//@RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
 
@@ -16,8 +14,8 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(RuntimeException.class)
     public String handleRuntimeException(HttpServletRequest request, RuntimeException ex) {
-        log.error("RuntimeException: {}", ExceptionUtils.getStackTrace(ex));
-        log.error("请求地址: {}", request.getRequestURL());
+//        log.error("RuntimeException: {}", ExceptionUtils.getStackTrace(ex));
+//        log.error("请求地址: {}", request.getRequestURL());
         return "全局错误处理器：RuntimeException";
     }
 
@@ -30,7 +28,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     public String defaultErrorHandler(Exception ex) {
-        log.error("Exception: {}", ExceptionUtils.getStackTrace(ex));
+//        log.error("Exception: {}", ExceptionUtils.getStackTrace(ex));
         return "全局错误处理器：Exception";
     }
 
